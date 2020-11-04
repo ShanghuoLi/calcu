@@ -16,6 +16,11 @@ caloutflow can be installed via pip:
 pip install git+https://github.com/ShanghuoLi/calcu.git
 ```
 
+To upgrade:
+
+```
+pip install --upgrade git+https://github.com/ShanghuoLi/calcu.git
+```
 
 
 Questions and commments
