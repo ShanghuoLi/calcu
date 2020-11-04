@@ -13,7 +13,7 @@ Installation
 caloutflow can be installed via pip:
 
 ```
-pip install git+https://github.com/ShanghuoLi/calcu.git
+pip install https://github.com/ShanghuoLi/calcu
 ```
 
 
