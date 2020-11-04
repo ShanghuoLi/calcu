@@ -1,5 +1,5 @@
 # calcu
-calcu is python toolkit for calculating the physical paramters of molecular outflow and the total column density of molecule. 
+calcu is a python toolkit for calculating the physical paramters of molecular outflow (`calf`) and the total column density of molecule (`calcol`). 
 
 If you use calcu in your own publication, please cite Li et al 2020. 
 
