@@ -93,7 +93,7 @@ class immoment0(object):
 
 
 ##--------------------------------------------------------------------------------------
-class headerinfo(object):
+class headinfo(object):
     '''
     Get some useful information from header
 
