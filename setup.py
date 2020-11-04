@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
   name = 'calcu',
@@ -8,7 +8,6 @@ setup(
   author = ['Shanghuo Li'],
   author_email = 'shanghuo.li@gmail.com',
   url = 'https://github.com/ShanghuoLi/calcu', # use the URL to the github repo
-  packages=find_packages(),
   keywords = ['astrophysics', 'calcu', 'outflow', 'column density'], # arbitrary keywords
   classifiers = [],
   install_requires=[
