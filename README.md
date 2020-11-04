@@ -13,11 +13,18 @@ Installation
 caloutflow can be installed via pip:
 
 ```
-pip install 
+pip install git+https://github.com/ShanghuoLi/calcu.git
 ```
 
 To upgrade:
 
 ```
-pip install --upgrade 
+pip install --upgrade git+https://github.com/ShanghuoLi/calcu.git
 ```
+
+
+
+Installation
+------------
+
+The calcu package has been developed by Shanghuo Li (shanghuo.li@gmail.com). If you find a bug, have questions, or would like to request a new feature, please feel free to send me an email or raise an issue in the github repository. We'd love to hear from you!
