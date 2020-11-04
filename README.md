@@ -3,7 +3,7 @@ calcu is a python toolkit for calculating the physical paramters of molecular ou
 
 If you use calcu in your own publication, please cite Li et al 2020. 
 
-arXiv link: https://ui.adsabs.harvard.edu/abs/2020arXiv200905506L/abstract
+ADS link: https://ui.adsabs.harvard.edu/abs/2020arXiv200905506L/abstract
 
 ApJ link: 
 
