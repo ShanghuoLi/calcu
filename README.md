@@ -1,7 +1,7 @@
-# caloutflow
-caloutflow is python toolkit for calculating the physical paramters of molecular outflow. 
+# calcu
+calcu is python toolkit for calculating the physical paramters of molecular outflow and the total column density of molecule. 
 
-If you use caloutflow in your own publication, please cite Li et al 2020. 
+If you use calcu in your own publication, please cite Li et al 2020. 
 
 arXiv link: https://ui.adsabs.harvard.edu/abs/2020arXiv200905506L/abstract
 
