@@ -7,7 +7,7 @@ setup(
   description = 'To compute the physical parameters of molecular outflow and total column density of molecule',
   author = ['Shanghuo Li'],
   author_email = 'shanghuo.li@gmail.com',
-  url = 'https://github.com/ShanghuoLi/calcu.git', # use the URL to the github repo  
+  url = 'https://github.com/ShanghuoLi/calcu/archive/0.1.0.zip', # use the URL to the github repo  
   packages=find_packages(),
   keywords = ['astrophysics', 'calcu', 'outflow', 'column density'], # arbitrary keywords
   classifiers = [],
