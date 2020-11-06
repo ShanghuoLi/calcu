@@ -21,7 +21,7 @@ class immoment0(object):
     pb: numpy.ndarray (2D or 3D) or a number-like object
         primary beam correction;
     -------------- output ---------- 
-    momt0: numpy.ndarray
+    mom0: numpy.ndarray
         velocity-integrated intensity map
     '''
     def __init__(self, fname, vl=0, vu=1, pb=None):
@@ -56,15 +56,15 @@ class immoment0(object):
         elif self.vl_chan > self.vu_chan:
             vch_start,vch_stop = self.vu_chan,self.vl_chan
 
-        momt0 = np.zeros((img.shape[1],img.shape[2]))
-        momt0 = np.sum(img[vch_start:vch_stop+1,:,:], axis=0) * np.abs(self.onevpix) # Sdv# JY/beam * km/s
+        mom0 = np.zeros((img.shape[1],img.shape[2]))
+        mom0 = np.sum(img[vch_start:vch_stop+1,:,:], axis=0) * np.abs(self.onevpix) # Sdv# JY/beam * km/s
 
         if pb is None:
-            self.momt0 = momt0
+            self.mom0 = mom0
         elif isinstance(pb, (int, float)):
-            self.momt0 = momt0/pb
+            self.mom0 = mom0/pb
         elif (isinstance(pb, np.ndarray)) and (pb.ndim==2):
-            self.momt0 = momt0/pb
+            self.mom0 = mom0/pb
         elif pb[-5:]=='.fits':
             Inputpb = fits.open(pb)[0]
             if Inputpb.header['NAXIS'] == 2:
@@ -85,7 +85,7 @@ class immoment0(object):
                 raise TypeError("pb should be given as 2D image or 3D cube.")
             else:
                 raise TypeError("pb should be given as 2D image or 3D cube.")
-            self.momt0 = momt0/pbcor
+            self.mom0 = mom0/pbcor
         else:
             raise TypeError("pb should be given as a single int or float value, 2D numpy.array, or 2D or 3D fits.")
 ##--------------------------------------------------------------------------------------
@@ -139,13 +139,15 @@ class headinfo(object):
         print ( "major_beam=%s minor_beam=%s"%(self.bmaj, self.bmin) )
         self.freq = InputMap.header['RESTFRQ'] / 1e9     # GHz
 
-        if InputMap.header['BUNIT'] == 'beam-1 Jy':
+        if ('beam-1 Jy' in InputMap.header['BUNIT']) or ('Jy beam-1' in InputMap.header['BUNIT']) or ('Jy/beam' in InputMap.header['BUNIT']):
             self.Jyperbeam2K = 1.222e6/(self.freq**2 * self.bmaj * self.bmin)  # freq in GHz, bmaj and bmin in arcsec
             print ( "Jyperbeam_to_K = %.3f"%(self.Jyperbeam2K) )
-        elif InputMap.header['BUNIT'] == 'K':
+        elif 'K' in InputMap.header['BUNIT']:
             self.Jyperbeam2K = 1
             print("The unit of datacube is K")
             print ( "Jyperbeam_to_K = %.3f"%(self.Jyperbeam2K) )
+        else:
+            raise TypeError("the unit is neither 'Jy/beam' not 'K'.")
 
         hduhead = self.header
         if ('PC01_01' in hduhead) and ('PC01_04' in hduhead):
