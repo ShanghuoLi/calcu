@@ -162,10 +162,10 @@ class calf(object):
         else:
             raise TypeError("data should be given as 3D-spectrum cube fits file.")
 
-        if InputMap.header['CUNIT3'] in ['m s-1', 's-1 m', 'm/s']:
+        if InputMap.header['CUNIT3'] in ['m s-1', 's-1 m', 'ms-1', 's-1m', 'm/s']:
             onevpix = InputMap.header['CDELT3'] * 0.001  # from m/s to km/s
             v0 = InputMap.header['CRVAL3'] * 0.001  # from m/s to km/s
-        elif InputMap.header['CUNIT3'] in ['km s-1', 's-1 km', 'km/s']:
+        elif InputMap.header['CUNIT3'] in ['km s-1', 's-1 km', 'kms-1', 's-1km', 'km/s']:
             onevpix = InputMap.header['CDELT3']         # unit is km/s
             v0 = InputMap.header['CRVAL3']  # from m/s to km/s
         else:
@@ -178,10 +178,10 @@ class calf(object):
         bmin = InputMap.header['BMIN'] * 3600
         print ( "bmaj={:.4f}, bmin={:.4f}".format(bmaj, bmin) )
         freq = InputMap.header['RESTFRQ'] / 1e9     # GHz
-        if InputMap.header['BUNIT'] in ['beam-1 Jy', 'Jy beam-1', 'Jy/beam']:
+        if InputMap.header['BUNIT'] in ['beam-1 Jy', 'Jy beam-1', 'beam-1Jy', 'Jybeam-1', 'Jy/beam']:
             Jyperbeam2K = 1.222e6/(freq**2 * bmaj * bmin)  # freq in GHz, bmaj and bmin in arcsec
             print ( "Jyperbeam_to_K = {:.3f}".format(Jyperbeam2K) )
-        elif InputMap.header['BUNIT'] == 'K':
+        elif InputMap.header['BUNIT'] in ['K']:
             Jyperbeam2K = 1
             print("The unit of datacube is K")
         else:
