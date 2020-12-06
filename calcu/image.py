@@ -42,10 +42,10 @@ class immoment0(object):
         else:
             raise TypeError("data should be given as 3D-spectrum cube fits file.")
 
-        if InputMap.header['CUNIT3'] in ['m s-1', 's-1 m', 'm/s']:
+        if InputMap.header['CUNIT3'] in ['m s-1', 's-1 m', 'ms-1', 's-1m', 'm/s']
             self.onevpix = InputMap.header['CDELT3'] * 0.001  # from m/s to km/s
             v0 = InputMap.header['CRVAL3'] * 0.001  # from m/s to km/s
-        elif InputMap.header['CUNIT3'] in ['km s-1', 's-1 km', 'km/s']:
+        elif InputMap.header['CUNIT3'] in ['km s-1', 's-1 km', 'kms-1', 's-1km', 'km/s']:
             self.onevpix = InputMap.header['CDELT3']         # unit is km/s
             v0 = InputMap.header['CRVAL3']  # from m/s to km/s
         else:
@@ -136,10 +136,10 @@ class headinfo(object):
         self.head3d = InputMap.header
         self.header = InputMap.header
 
-        if InputMap.header['CUNIT3'] in ['m s-1', 's-1 m', 'm/s']:
+        if InputMap.header['CUNIT3'] in ['m s-1', 's-1 m', 'ms-1', 's-1m', 'm/s']:
             self.onevpix = InputMap.header['CDELT3'] * 0.001  # from m/s to km/s
             self.v0 = InputMap.header['CRVAL3'] * 0.001  # from m/s to km/s
-        elif InputMap.header['CUNIT3'] in ['km s-1', 's-1 km', 'km/s']:
+        elif InputMap.header['CUNIT3'] in ['km s-1', 's-1 km', 'kms-1', 's-1km', 'km/s']:
             self.onevpix = InputMap.header['CDELT3']         # unit is km/s
             self.v0 = InputMap.header['CRVAL3']  # from m/s to km/s
         else:
@@ -155,10 +155,10 @@ class headinfo(object):
         print ( "major_beam={} minor_beam={}".format(self.bmaj, self.bmin) )
         self.freq = InputMap.header['RESTFRQ'] / 1e9     # GHz
 
-        if InputMap.header['BUNIT'] in ['beam-1 Jy', 'Jy beam-1', 'Jy/beam']:
+        if InputMap.header['BUNIT'] in ['beam-1 Jy', 'Jy beam-1', 'beam-1Jy', 'Jybeam-1', 'Jy/beam']:
             self.Jyperbeam2K = 1.222e6/(self.freq**2 * self.bmaj * self.bmin)  # freq in GHz, bmaj and bmin in arcsec
             print ( "Jyperbeam_to_K = {:.3f}".format(self.Jyperbeam2K) )
-        elif 'K' in InputMap.header['BUNIT']:
+        elif InputMap.header['BUNIT'] in ['K']:
             self.Jyperbeam2K = 1
             print("The unit of datacube is K")
             print ( "Jyperbeam_to_K = {:.3f}".format(self.Jyperbeam2K) )
