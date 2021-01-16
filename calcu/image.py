@@ -141,14 +141,19 @@ class headinfo(object):
         self.head3d = InputMap.header
         self.header = InputMap.header
 
-        if InputMap.header['CUNIT3'] in ['m s-1', 's-1 m', 'ms-1', 's-1m', 'm/s']:
-            self.onevpix = InputMap.header['CDELT3'] * 0.001  # from m/s to km/s
-            self.v0 = InputMap.header['CRVAL3'] * 0.001  # from m/s to km/s
-        elif InputMap.header['CUNIT3'] in ['km s-1', 's-1 km', 'kms-1', 's-1km', 'km/s']:
-            self.onevpix = InputMap.header['CDELT3']         # unit is km/s
-            self.v0 = InputMap.header['CRVAL3']  # from m/s to km/s
+        if 'CUNIT3' in InputMap.header:
+            if InputMap.header['CUNIT3'] in ['m s-1', 's-1 m', 'ms-1', 's-1m', 'm/s']:
+                self.onevpix = InputMap.header['CDELT3'] * 0.001    # from m/s to km/s
+                v0 = InputMap.header['CRVAL3'] * 0.001      # from m/s to km/s
+            elif InputMap.header['CUNIT3'] in ['km s-1', 's-1 km', 'kms-1', 's-1km', 'km/s']:
+                self.onevpix = InputMap.header['CDELT3']    # unit is km/s
+                v0 = InputMap.header['CRVAL3']              # from m/s to km/s
+            else:
+                raise TypeError("The unit of third dimenson has to be km/s or m/s.")
         else:
-            raise TypeError("The unit of third dimenson has to be km/s or m/s.")
+            self.onevpix = InputMap.header['CDELT3'] * 0.001    # from m/s to km/s
+            v0 = InputMap.header['CRVAL3'] * 0.001      # from m/s to km/s
+            print('The unit of third dimenson is assumed to be m/s, because there is not unit in the header')
 
         self.v0pix = InputMap.header['CRPIX3']
         self.onepix = 3600. * abs(InputMap.header['CDELT1'])  #pixel size in arcsec
