@@ -351,6 +351,49 @@ class calcol_line(object):
             const0 = 3 * h / (8 *(np.pi)**3 * Sijmu2 * Ri )
             Qrot = (k*self.Tex/(h*B0) + 1./3)
 
+            
+        ##------- CS
+        elif name=='CS':
+            self.molecule = line_13CS
+            if J in self.molecule['QNs']:
+                self.QNs = J
+                J = self.molecule['QNs'].index(J)
+            else:
+                raise TypeError("please provide a correct Quantum numbers (transition).")
+            print("---->>> Line {} {}  <<<-------".format(name, self.QNs ))
+            self.note = self.molecule['note']
+            # Ju    = self.molecule['QNs'][J]
+            freq   = self.molecule['freq'][J] * 1e9
+            # gu    = self.molecule['gu'][J]
+            Eu     = self.molecule['Eu'][J]
+            Sijmu2 = self.molecule['Sijmu2'][J] * 1e-36
+            Ri     = self.molecule['Ri'][J]
+            B0     = self.molecule['B0'][0] * 1e6
+        
+            const0 = 3 * h / (8 *(np.pi)**3 * Sijmu2 * Ri )
+            Qrot = (1.85*self.Tex - 3.32)
+
+
+        ##------- C34S
+        elif name=='C34S':
+            self.molecule = line_13CS
+            if J in self.molecule['QNs']:
+                self.QNs = J
+                J = self.molecule['QNs'].index(J)
+            else:
+                raise TypeError("please provide a correct Quantum numbers (transition).")
+            print("---->>> Line {} {}  <<<-------".format(name, self.QNs ))
+            self.note = self.molecule['note']
+            # Ju    = self.molecule['QNs'][J]
+            freq   = self.molecule['freq'][J] * 1e9
+            # gu    = self.molecule['gu'][J]
+            Eu     = self.molecule['Eu'][J]
+            Sijmu2 = self.molecule['Sijmu2'][J] * 1e-36
+            Ri     = self.molecule['Ri'][J]
+            B0     = self.molecule['B0'][0] * 1e6
+        
+            const0 = 3 * h / (8 *(np.pi)**3 * Sijmu2 * Ri )
+            Qrot = (1.85*self.Tex - 3.32)
 
 
         ##------- 13CS
