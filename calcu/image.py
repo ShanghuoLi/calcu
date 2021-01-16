@@ -42,7 +42,7 @@ class immoment0(object):
         else:
             raise TypeError("data should be given as 3D-spectrum cube fits file.")
 
-        if InputMap.header['CUNIT3'] in ['m s-1', 's-1 m', 'ms-1', 's-1m', 'm/s']
+        if InputMap.header['CUNIT3'] in ['m s-1', 's-1 m', 'ms-1', 's-1m', 'm/s']:
             self.onevpix = InputMap.header['CDELT3'] * 0.001  # from m/s to km/s
             v0 = InputMap.header['CRVAL3'] * 0.001  # from m/s to km/s
         elif InputMap.header['CUNIT3'] in ['km s-1', 's-1 km', 'kms-1', 's-1km', 'km/s']:
