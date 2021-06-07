@@ -56,7 +56,7 @@ class immoment0(object):
             v0 = InputMap.header['CRVAL3'] * 0.001      # from m/s to km/s
             print('The unit of third dimenson is assumed to be m/s, because there is not unit in the header')
 
-        v0pix = InputMap.header['CRPIX3']       #Pixel coordinate of reference point for velocity
+        v0pix = InputMap.header['CRPIX3'] - 1      #Pixel coordinate of reference point for velocity
 
         self.vl_chan = np.int( np.abs((self.vl - v0)) / np.abs(self.onevpix) + v0pix )
         self.vu_chan = np.int( np.abs((self.vu - v0)) / np.abs(self.onevpix) + v0pix )
