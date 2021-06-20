@@ -354,7 +354,7 @@ class calcol_line(object):
             
         ##------- CS
         elif name=='CS':
-            self.molecule = line_13CS
+            self.molecule = line_CS
             if J in self.molecule['QNs']:
                 self.QNs = J
                 J = self.molecule['QNs'].index(J)
@@ -376,7 +376,7 @@ class calcol_line(object):
 
         ##------- C34S
         elif name=='C34S':
-            self.molecule = line_13CS
+            self.molecule = line_C34S
             if J in self.molecule['QNs']:
                 self.QNs = J
                 J = self.molecule['QNs'].index(J)
