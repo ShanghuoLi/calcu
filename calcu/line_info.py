@@ -90,6 +90,26 @@ line_C17O = {'QNs': ['1-0', '2-1', '3-2'],
             'note': 'using Ri=1, so need to sum up all hyperfine lines'
           }
 
+
+##-------------------------------
+## hyperfine transition
+## relative intensities for the correpsonding frequency (transition), 
+# if all of the hyperfine were chosen for the calculation Ri=1
+##-------------------------------
+line_13C17O = {'QNs': ['1-0', '2-1', '3-2'], 
+           'freq': [107.28855, 214.573873, 321.8515],
+           'Eu': [5.14903, 15.44693, 30.89324], 
+           'gu': [8, 10, 12],
+           'Sijmu2':[0.0326287, 0.04891, 0.06282],
+           'B0':[53644.79],
+           'Ri': [1, 1, 1],
+           ## relative intensities for the correpsonding frequency (transition), 
+           # if all of the hyperfine were chosen for the calculation Ri=1
+        #    'Aul': [10**-7.1425, 10**-6.1605, 10**-5.6026, 10**-5.2128, 10**-4.9132]  
+            'note': 'using Ri=1, so need to sum up all hyperfine lines'
+          }
+
+
 ##-------- SiO ---------
 line_SiO = {'QNs': ['1-0', '2-1', '3-2' ,'4-3', '5-4', '6-5'], 
            'freq': [43.423853, 86.846985, 130.268683, 173.688238, 217.104919, 260.518009],
