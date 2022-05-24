@@ -241,27 +241,6 @@ class calcol_line(object):
             Qrot   = (k*self.Tex/(h*B0) + 1./3)
 
 
-        ##------- H13COP 
-        elif name=='H13CO+':
-            # self.mu = mu_H3COp
-            self.molecule = line_H13COp
-            if J in self.molecule['QNs']:
-                self.QNs = J
-                J = self.molecule['QNs'].index(J)
-            else:
-                raise TypeError("please provide a correct Quantum numbers (transition).")
-            print("---->>> Line {} {}  <<<-------".format(name, self.QNs )) 
-            self.note = self.molecule['note']
-            freq   = self.molecule['freq'][J] * 1e9
-            Eu     = self.molecule['Eu'][J]
-            Sijmu2 = self.molecule['Sijmu2'][J] * 1e-36
-            Ri     = self.molecule['Ri'][J]
-            B0     = self.molecule['B0'][0] * 1e6
-        
-            const0 = 3 * h / (8 *(np.pi)**3 * Sijmu2 * Ri )
-            Qrot   = (k*self.Tex/(h*B0) + 1./3)
-
-
         ##------- 13CO 
         elif name=='13CO':
             self.molecule = line_13CO
@@ -305,9 +284,36 @@ class calcol_line(object):
             B0     = self.molecule['B0'][0] * 1e6
 
             const0 = 3 * h / (8 *(np.pi)**3 * Sijmu2 * Ri )
-            Qrot   = (2.23*self.Tex + 1.92)
+#             Qrot   = (2.23*self.Tex + 1.92)
+            Qrot   = (kB*self.Tex/(h0*B0) + 1./3)
+
+            
+        ##------- C17O 
+        elif name=='13C17O':
+            self.molecule = line_13C17O
+            if frequency is not None:
+                idx = find_nearest(self.molecule['freq'], frequency)
+            elif J in self.molecule['QNs']:
+                idx = self.molecule['QNs'].index(J)
+            else:
+                raise TypeError("please provide a correct Quantum numbers (transition).")
+            self.QNs = self.molecule['QNs'][idx]
+            print("---->>> Line {} {}  <<<-------".format(name, self.QNs ))
+            self.note = self.molecule['note']
+            # self.mu = mu_CO           
+            # Ju    = self.molecule['QNs'][idx]
+            freq   = self.molecule['freq'][idx] * 1e9
+            # gu    = self.molecule['gu'][idx]
+            Eu     = self.molecule['Eu'][idx]
+            Sijmu2 = self.molecule['Sijmu2'][idx] * 1e-36
+            Ri     = self.molecule['Ri'][idx]
+            B0     = self.molecule['B0'][0] * 1e6
+
+            const0 = 3 * h0 / (8 *(np.pi)**3 * Sijmu2 * Ri )
+            Qrot   = (kB*self.Tex/(h0*B0) + 1./3)
 
 
+            
         ##------- C18O 
         elif name=='C18O':
             self.molecule = line_C18O
@@ -330,6 +336,29 @@ class calcol_line(object):
 
 
  
+
+        ##------- H13COP 
+        elif name=='H13CO+':
+            # self.mu = mu_H3COp
+            self.molecule = line_H13COp
+            if J in self.molecule['QNs']:
+                self.QNs = J
+                J = self.molecule['QNs'].index(J)
+            else:
+                raise TypeError("please provide a correct Quantum numbers (transition).")
+            print("---->>> Line {} {}  <<<-------".format(name, self.QNs )) 
+            self.note = self.molecule['note']
+            freq   = self.molecule['freq'][J] * 1e9
+            Eu     = self.molecule['Eu'][J]
+            Sijmu2 = self.molecule['Sijmu2'][J] * 1e-36
+            Ri     = self.molecule['Ri'][J]
+            B0     = self.molecule['B0'][0] * 1e6
+        
+            const0 = 3 * h / (8 *(np.pi)**3 * Sijmu2 * Ri )
+            Qrot   = (k*self.Tex/(h*B0) + 1./3)
+
+
+            
         ##------- SiO 
         elif name=='SiO':
             self.molecule = line_SiO
