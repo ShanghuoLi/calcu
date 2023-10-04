@@ -170,6 +170,7 @@ class calf(object):
             v0 = InputMap.header['CRVAL3']  # from m/s to km/s
         else:
             raise TypeError("The unit of third dimenson has to be km/s or m/s.")
+        self.v0 = v0
         
         v0pix = InputMap.header['CRPIX3'] - 1
         onepix = 3600. * abs(InputMap.header['CDELT1'])  #pixel size in arcsec
